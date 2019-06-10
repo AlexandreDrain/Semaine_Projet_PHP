@@ -6,9 +6,8 @@ use src\Utilities\Router;
 $router = new Router();
 $router->addRoute('/','index.php');
 $router->addRoute('/inscription', 'register.php');
-$router->addRoute('/inscription', 'register.php');
-$router->addRoute('/course', 'race.php');
-$router->addRoute('/connexion', 'connection.php');
+$router->addRoute('/services', 'service.php');
+
 
 
 $templates = $router->match();

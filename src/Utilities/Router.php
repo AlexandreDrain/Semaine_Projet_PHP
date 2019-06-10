@@ -29,10 +29,10 @@ class Router
 	{
 		$url = $_SERVER['REQUEST_URI'];
 		// TODO : à enleer ASAP
-		if(strlen($url) >= 10) {
+		//if(strlen($url) >= 10) {
 
-			$url = substr($url, 10);	
-		}
+		//$url = substr($url, 10);	enlever maintenant car on a mis un chemin propre
+		//}
 
 		// On boucle  dans les routes enregistrées
 		foreach ($this->routes as $route) {
