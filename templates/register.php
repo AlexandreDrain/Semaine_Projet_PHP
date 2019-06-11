@@ -4,11 +4,11 @@ use src\Controller\RegisterController;
 ?>
 
 
-<footer class="container">
+<div class="container bg-light">
 
   <?php if(isset($success) && $success === 1) : ?>
     <div class="alert alert-success alert-dismissible fade show" role="alert">
-      Utilisateur inscrit : Bonjour <?= (isset($user)) ? $user->getUsername() : '' ?>      
+      Utilisateur inscrit : Bonjour <?= (isset($user)) ? $user->getName() : '' ?>      
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -16,19 +16,17 @@ use src\Controller\RegisterController;
   <?php  endif; ?>
 
   <form method="post" class="needs-validation">
-    <div class="row">
-      <div class="col">
+    <div>
+      <div class="col col-md-4">
         <label for="name">Prénom</label>
         <input type="text"  class="form-control <?= (isset($errorMessageUsername) && !empty($errorMessageUsername)) ? 'is-invalid' : '' ?>" name="name" placeholder="First name" value="<?= $_POST['name']  ?? '' ?>" valited>
         <div class="invalid-feedback"><?= $errorMessageUsername ?? "" ?></div>
       </div>
-      <div class="col">
+      <div class="col col-md-4">
         <label for="lastName">Nom</label>
         <input type="text" class="form-control <?= (isset($errorMessageUsername) && !empty($errorMessageUsername)) ? 'is-invalid' : '' ?>" placeholder="Last name" name="lastName" value="<?= $_POST['lasName']  ?? '' ?>" valited>
         <div class="invalid-feedback"><?= $errorMessageUsername ?? "" ?></div>
       </div>
-    </div>
-    <div class="form-row">
       <div class="form-group col-md-6">
         <label for="email">Email</label>
         <input type="email" class="form-control <?= (isset($errorMessageEmail) && !empty($errorMessageEmail)) ? 'is-invalid' : '' ?>" id="inputAddress2" name="email" placeholder="Email" value="<?= $_POST['email']  ?? '' ?>">
@@ -43,7 +41,7 @@ use src\Controller\RegisterController;
     </div>
   </form>
 
-</footer>
+</div>
 
 
 <?php require "inc/footer.php"; ?>
