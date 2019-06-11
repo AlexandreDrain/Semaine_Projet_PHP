@@ -1,9 +1,6 @@
 <?php
 namespace src\Entity;
 
-/**
- * 
- */
 class User
 {
 
@@ -29,7 +26,21 @@ class User
 	private $role;
 
 
-	
+	/**
+     * Initialisation des propriétés de l'utilisateur à la construction de l'objet
+     * @param string $username
+     * @param string $email
+     * @param string $password
+     */
+    public function __construct(string $name,string $lastName, string $email, string $password, string $role)
+    {
+        $this->name = $name;
+        $this->lastName = $lastName;
+        $this->email = $email;
+        $this->setPassword($password);
+        $this->role = $role;
+    }
+
 
     /**
      * @return string
@@ -88,11 +99,15 @@ class User
     }
 
     /**
+     * Ajoute et hash le mot de passe
      * @param string $password
      */
-    public function setPassword($password)
+    public function setPassword(string $password): void
     {
-        $this->password = $password;
+        // Hashage
+        $hash = password_hash($password, PASSWORD_BCRYPT);
+        // Stockage
+        $this->password = $hash;
     }
 
     /**
@@ -109,5 +124,27 @@ class User
     public function setRole($role)
     {
         $this->role = $role;
+    }
+
+    /**
+     * Récupère le nom d'utilisateur, l'email et le mot de passe
+     * Prépare la requête SQL pour le "INSERT INTO"
+     * @return string
+     */
+    public function getStrParamsSQL(): string
+    {
+        // On crée un tableau avec les 3 propriétés
+        $tab = [
+            htmlentities($this->name),
+            htmlentities($this->lastName),
+            htmlentities($this->email),
+            htmlentities($this->password),
+            htmlentities($this->role)
+        ];
+        // On crée une chaîne de caractères séparés de virgules et les quotes simples
+        $str = implode("','", $tab);
+        // On a ajoute une quote simple au début et une à la fin
+        // On retourne l'ensemble
+        return "'" . $str . "'";
     }
 }

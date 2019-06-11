@@ -17,7 +17,7 @@ class Database
      */
     public function __construct()
     {
-        var_dump("Entrée dans le constructeur");
+        //var_dump("Entrée dans le constructeur");
         $this->connect();
     }
 

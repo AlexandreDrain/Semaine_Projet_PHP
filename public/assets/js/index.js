@@ -1,4 +1,4 @@
-/* $(document).ready(function() {
+$(document).ready(function() {
 	
 	/*$('header figure img').first().on('click', function() {
 			console.log('img[href="Logo"]');
@@ -15,14 +15,17 @@
 		 	$('#sous_menu').slideUp(500);
 				
 		});
-	});
+	}); */
 
 
-	var rotate = document.querySelector('main section');
-	rotate.addEventListener('click', function(){
-		console.log();
-		rotate.style.transform = 'rotateY(180deg)';
-		rotate.style.transformOrigin = '50 0';
-	});
+	/*$('footer section:first-child a').on('mouseenter', function(){
+		console.log(this);
+		$(this).rotate(360);
+		
+	});*/
 
-}) */
+	
+
+
+
+}) 

@@ -18,7 +18,7 @@ class AuthController
 	public function connect(): array
 	{
 		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
+			
 			$errorMessageEmail = FormValidator::checkPostText('email', 255);
 			$errorMessagePassword = FormValidator::checkPostText('password', 128);
 			$user = '';
@@ -34,7 +34,7 @@ class AuthController
 	        // On crée un utilisateur en local
 				$user = new User($_POST[''], $_POST['email'], $_POST['password']);
 
-				$sql = 'SELECT * FROM app_user WHERE email = ($user->getEmail())'
+				$sql = 'SELECT * FROM utilisateur WHERE email = ($user->getEmail())'
 
 				$user = $database->query($sql, User::class);
 				if (empty($users)) {
