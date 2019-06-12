@@ -110,6 +110,23 @@ class User
         $this->password = $hash;
     }
 
+   
+    // public function getPasswordVerifi()
+    // {
+    //     return $this->passwordVerifi;
+    // }
+
+    
+    // public function setPasswordVerifi(string $password): void
+    // {
+    //     // Hashage
+    //     $hash = password_hash($password, PASSWORD_BCRYPT);
+    //     // Stockage
+    //     $this->password = $hash;
+    // }
+    
+
+
     /**
      * @return string
      */
@@ -147,4 +164,5 @@ class User
         // On retourne l'ensemble
         return "'" . $str . "'";
     }
+
 }

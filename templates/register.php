@@ -1,59 +1,49 @@
-<?php 
-require 'inc/header.php';
+<?php
 use src\Controller\RegisterController;
+// On récupère notre contrôleur
+$controller = new RegisterController();
+// On récupère les données de l'index
+$datas = $controller->register();
+// On extrait les données pour pouvoir les utiliser en tant que variables
+extract($datas);
 
-$toto = new RegisterController();
-extract($toto->register());
+
+require 'inc/header.php';
 ?>
-
-
-<div class="container bg-grey">
-
-  <?php if(isset($success) && $success === 1) : ?>
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-      Utilisateur inscrit : Bonjour <?= (isset($user)) ? $user->getName() : '' ?>      
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-  <?php  endif; ?>
-
-  <form method="post" class="needs-validation">
-    <div>
-      <div class="col col-md-4">
-        <label for="name">Prénom</label>
-        <input type="text"  class="form-control <?= (isset($errorMessageName) && !empty($errorMessageName)) ? 'is-invalid' : '' ?>" name="name" placeholder="First name" value="<?= $_POST['name']  ?? '' ?>"valited>
-        <div class="invalid-feedback"><?= $errorMessageName ?? "" ?></div>
-      </div>
-      <div class="col col-md-4">
-        <label for="lastName">Nom</label>
-        <input type="text" class="form-control <?= (isset($errorMessageLastName) && !empty($errorMessageLastName)) ? 'is-invalid' : '' ?>" placeholder="Last name" name="lastName" value="<?= $_POST['lastName']  ?? '' ?>" valited>
-        <div class="invalid-feedback"><?= $errorMessageLastName ?? "" ?></div>
-      </div>
-      <div class="form-group col-md-6">
-        <label for="email">Email</label>
-        <input type="email" class="form-control <?= (isset($errorMessageEmail) && !empty($errorMessageEmail)) ? 'is-invalid' : '' ?>" id="inputAddress2" name="email" placeholder="Email" value="<?= $_POST['email']  ?? '' ?>">
-        <div class="invalid-feedback"><?= $errorMessageEmail ?? "" ?></div>
-      </div>
-      <div class="form-group col-md-6">
-        <label for="password">Mot de passe :</label>
-        <input type="password" class="form-control  <?= (isset($errorMessageMdp) && !empty($errorMessageMdp)) ? 'is-invalid' : '' ?>" id="inputPassword4" name="password" placeholder="Password" value="<?= $_POST['password']  ?? '' ?>">
-      <div class="invalid-feedback"><?= $errorMessageMdp ?? "" ?></div>
-      
-        <div class="input-group mb-3 form-group">
-          <div class="input-group-prepend">
-            <div class="input-group-text">
-              <label for="role">Souhaitez-vous vous inscrire en tant que garagiste ?</label>
-              <input type="checkbox" aria-label="Checkbox for following text input" id="role" name="role">
+    <main>
+      <div class="">
+        <?php if (isset($success) && $success === 1) : ?>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                Utilisateur inscrit : Bonjour <?= (isset($user)) ? $user->getName() : '' ?>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-          </div>
-        </div>
+        <?php endif; ?>
 
-      </div class="form-group col-md-2">
-        <input type="submit" value="S'inscrire" class="btn btn-outline-success">
+        <h1>Bienvenu sur le formulaire d'inscription</h1>
+
+        <form method="post">
+
+            <?= $formValidator->generateInputText('name', 'text','Nom d\'utilisateur',$errors) ?>
+            <?= $formValidator->generateInputText('lastName', 'text','Nom d\'utilisateur',$errors) ?>
+            <?= $formValidator->generateInputText('email', 'email','Adresse email',$errors) ?>
+            <?= $formValidator->generateInputText('password', 'password','Mot de passe',$errors) ?>
+            <?= $formValidator->generateInputText('password-confirm', 'password','Vérification mot de passe',$errors) ?>
+    
+            <div class="input-group col-md-8">
+                <label for="role">Souhaites-tu t'inscrire en tant que garagiste ?</label>
+                <input type="checkbox"
+                       class="form-control <?= (isset($errors['role']) && !empty($errors['role'])) ? 'is-invalid' : '' ?>"
+                       id="role" name="role" value="<?= $_POST['role'] ?? '' ?>">
+                <div class="invalid-feedback"><?= $errors['role'] ?? "" ?></div>
+            </div>
+
+            <input type="submit" value="S'inscrire" class="btn btn-outline-success">
+          
+
+        </form>
       </div>
-</form>
+    </main>
 
-</div>
-
-<?php require "inc/footer.php"; ?>
+<?php require 'inc/footer.php'; ?>

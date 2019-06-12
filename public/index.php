@@ -7,7 +7,8 @@ $router = new Router();
 $router->addRoute('/','index.php');
 $router->addRoute('/inscription', 'register.php');
 $router->addRoute('/services', 'service.php');
-
+$router->addRoute('/connecte', 'garagistePage.php');
+$router->addRoute('/test', 'example.php');
 
 
 $templates = $router->match();

@@ -22,7 +22,6 @@ class FormValidator
         // On retourne l'éventuel message ou une chaîne de caractères vide
         return $message ?? '';
     }
-
     /**
      * Verification de la clef dans la superglobale POST et renvoi
      * de l'éventuel message d'erreur à afficher dans l'HTML (nombres)
@@ -56,7 +55,6 @@ class FormValidator
         }
         return $message ?? "";
     }
-
     /**
      * Vérification d'un input de type "date", retour du message d'erreur
      * @param string $key La clef dans $_POST
@@ -79,7 +77,6 @@ class FormValidator
         }
         return $message ?? "";
     }
-
     public static function sanitizeRadio(string $key): void
     {
         if (!array_key_exists($key, $_POST)) {
@@ -88,16 +85,26 @@ class FormValidator
             $_POST[$key] = true;
         }
     }
-
-    public static function sanitizeCheckCoche(string $key): void
+    public function validate(array $datas)
     {
-        if (!array_key_exists($key, $_POST)) {
-            $_POST[$key] = false;
-        } else {
-            $_POST[$key] = true;
+        $errors = [];
+        foreach ($datas as $data) {
+            $errors[$data[0]] = self::checkPostText($data[0], $data[2]);
         }
+        return $errors;
     }
-
+    public function generateInputText(string $key, string $type, string $label, array $errors): string {
+        $isError = array_key_exists($key, $errors) && !empty($errors[$key])? 'is-invalid' : '';
+        $value = $_POST[$key] ?? '';
+        $error = $errors[$key] ?? "";
+        return <<<EOT
+ <div class="form-group col-md-6">
+    <label for="$key">$label :</label>
+    <input type="$type"
+           class="form-control $isError"
+           id="$key" name="$key" value="$value">
+    <div class="invalid-feedback">$error</div>
+</div>
+EOT;
+    }
 }
-
-

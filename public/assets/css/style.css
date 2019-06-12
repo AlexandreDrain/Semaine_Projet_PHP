@@ -4,8 +4,7 @@
 	box-sizing: border-box;
 }
 
-header
-{
+header {
 	display: block;
 	width: 100%;
 	height: auto;
@@ -13,7 +12,7 @@ header
 	border: 1px solid black;
 	display: flex;
 }
-header figure img{
+header figure img {
 	width: 400px;
 	height: 198px;
 }
@@ -52,7 +51,7 @@ main section h2 {
 form {
 	padding: 15px;
 }
-div.bg-grey
+main
 {
 	width: 100%;
 	background: lightgrey;
@@ -100,15 +99,23 @@ footer section:last-child p {
 	font-size: 0.7em;
 	text-align: justify;
 }
-
-
-.input-group-text input[type=checkbox], .input-group-text input[type=radio] {
-	margin-left: 10px;
-}
-.input-group>.input-group-append:last-child>.btn:not(:last-child):not(.dropdown-toggle), .input-group>.input-group-append:last-child>.input-group-text:not(:last-child), .input-group>.input-group-append:not(:last-child)>.btn, .input-group>.input-group-append:not(:last-child)>.input-group-text, .input-group>.input-group-prepend>.btn, .input-group>.input-group-prepend>.input-group-text {
-	margin-top: 20px;
+main div form input:hover {
+	border: 2px solid lightblue;
 }
 
+main div form div:nth-child(6) {
+	border: 2px solid #28a745;
+	border-radius: .25rem;
+	transition: 0.5s;
+	margin-bottom: 20px;
+}
+main div form div:nth-child(6):hover {
+	background: #28a745;
+	color: white;
+}
+main div form div:nth-child(6) label {
+	line-height: 30px;
+}
 
 @media screen and (max-width: 900px)  {
 	header
