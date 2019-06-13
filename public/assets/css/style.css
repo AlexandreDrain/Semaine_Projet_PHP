@@ -11,6 +11,7 @@ header {
 	background: grey;
 	border: 1px solid black;
 	display: flex;
+	justify-content: space-between;
 }
 header figure img {
 	width: 400px;
@@ -24,6 +25,29 @@ header h1 {
 	border: 1px solid black;
 	padding: 10px;
 	margin: auto;
+}
+header div {
+	width: 150px;
+	height: 100px;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	border-left: 1px solid black;
+	border-bottom: 1px solid black;
+	color: white;
+}
+header div a button {
+	background: transparent;
+	border: 1px solid white;
+	padding: 2px;
+	border-radius: 15px;
+	color: white;
+	transition: .5s;
+}
+header div a button:hover {
+	background: black;
+	padding: 4px;
+	box-shadow: black 5px 5px 10px;
 }
 
 main {

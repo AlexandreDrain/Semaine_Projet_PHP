@@ -32,7 +32,7 @@ class User
      * @param string $email
      * @param string $password
      */
-    public function __construct(string $name,string $lastName, string $email, string $password, string $role)
+    public function __construct(?string $name = '',?string $lastName = '', ?string $email = '', ?string $password = '', ?string $role = '' )
     {
         $this->name = $name;
         $this->lastName = $lastName;

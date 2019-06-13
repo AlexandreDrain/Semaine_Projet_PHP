@@ -1,3 +1,11 @@
+<?php
+use src\Controller\AuthController;
+
+$tata = new AuthController();
+$datas = $tata->connect();
+extract($datas);
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -16,6 +24,12 @@
 			<figcaption>Logo du collectif de garagistes</figcaption>
 		</figure>
 		<h1>MechaAvailability</h1>
+		<div>
+		<?php if (!empty($_SESSION['name'])) {
+			echo "<p>Utilisateur : " . $_SESSION['name'] . '</p>';
+		} ?>
+		<a href="/Deconnexion"><button type="button">Déconnexion</button></a>
+		</div>
 	</header>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		<div class="container">
@@ -29,6 +43,9 @@
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item">
 					<a class="nav-link" href="/services">Services</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/sign-in">Sign-in</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="/inscription">Inscription</a>

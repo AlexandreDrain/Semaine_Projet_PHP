@@ -1,12 +1,9 @@
 <?php
 namespace src\Controller;
 
-session_start();
-
 use src\Entity\User;
 use src\Utilities\Database;
 use src\Utilities\FormValidator;
-
 
 class AuthController
 {
@@ -17,35 +14,51 @@ class AuthController
 	 */
 	public function connect(): array
 	{
+		$formValidator = new FormValidator();
+		$errors = [];
 		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-			
-			$errorMessageEmail = FormValidator::checkPostText('email', 255);
-			$errorMessagePassword = FormValidator::checkPostText('password', 128);
-			$user = '';
-			$success = '';
+			$errors = $formValidator->validate([
+				['name', 'text', 128],
+				['password', 'text', 128],
+			]);
 
-			if (empty($errorMessageEmail) &&
-				empty($errorMessagePassword)
-				) {
-	        // Il n'y a pas d'erreur, on passe à l'inscription
-					$database = new Database();
-	        // $database->connect(); appelé directement dans le constructeur
-
-	        // On crée un utilisateur en local
-				$user = new User($_POST[''], $_POST['email'], $_POST['password']);
-
-				$sql = 'SELECT * FROM utilisateur WHERE email = ($user->getEmail())'
-
-				$user = $database->query($sql, User::class);
-				if (empty($users)) {
-
-				}else {
-					$userPassword = $user[0]->getPassword();
+			$isError = false;
+			foreach ($errors as $error) {
+				if($error !== '') {
+					$isError = true;
 				}
-
 			}
+
+			if (!$isError) {
+	        // Il n'y a pas d'erreur, on passe à l'inscription
+				$database = new Database();
+
+				$user = new User($_POST['name'], '', '', $_POST['password'], '');
+
+				$sql = "SELECT * FROM utilisateurs WHERE name = '{$user->getName()}'";
+				$users = $database->query($sql, User::class);
+
+				if (empty($users)) {
+					var_dump('notempty');	
+					$errorMessageText = "Cet email n'existe pas";
+				}  else {
+					$userPassword = $users[0]->getPassword();
+
+					if(password_verify($_POST['password'], $userPassword)) {
+
+						$_SESSION['name'] = $users[0]->getName();
+						$url = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'];
+                        header('Location: '.$url.'/');
+					} else {
+						
+						$errorMessagePassword = "Mauvais mot de passe";
+					}
+
+				}
+			}
+
 		}
-		return [];
+		return compact('errorMessageEmail', 'errorMessagePassword','formValidator', 'errors','user');
 	}
-	
+
 }

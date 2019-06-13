@@ -52,13 +52,14 @@ class RegisterController
                     // On essaye d'insérer en BDD
                     $success = $database->exec($query);
 
-                    if($success === 1 && $_POST['role'] === true) {                                         
+                    if($success === 1 /*&& $_POST['role'] === true*/) {
                         $url = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'];
-                        header('Location: '.$url.'/connecte');
-                    }elseif ($success === 1 && $_POST['role'] === false){
+                        header('Location: '.$url.'/sign-in');
+                    }/*elseif ($success === 1 && $_POST['role'] === false){
+                        session_start();
                         $url = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'];
-                        header('Location: '.$url.'/');
-                    }
+                        header('Location: '.$url.'/sign-in');
+                    }*/
 
                 } catch(\PDOException $e) {
                     // Une exception PDO est arrivée, on récupère son code
