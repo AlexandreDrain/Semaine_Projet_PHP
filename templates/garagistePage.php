@@ -7,17 +7,18 @@ $datas = $controller->garPage();
 extract($datas);
 ?>
 
+<form method="post">
 <?php 
 if (isset($_SESSION['role']) && $_SESSION['role'] === 'garagiste') {
 
 	echo $formValidator->generateInputText('image_name', 'text','Nom de votre image',$errors);
 	echo $formValidator->generateInputText('service_name', 'text','Nom de votre service',$errors); 
-	echo $formValidator->generateInputText('description-service','text','Descritpion du service',$errors);
+	echo $formValidator->generateInputText('desc_service','text','Descritpion du service',$errors);
 	echo $formValidator->generateInputText('etat_publication','checkbox','Voulez-vous publier ce service ?',$errors);
 	echo "<input type='submit' value=\"S'inscrire\" class='btn btn-outline-success' style='margin-bottom: 10px; margin-left: 10px;'>";
 } else {
 	
-?>
+	?>
 	<div class="modal" tabindex="-1" role="dialog">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
@@ -37,10 +38,7 @@ if (isset($_SESSION['role']) && $_SESSION['role'] === 'garagiste') {
 	<?php
 	$jsSup = '<script src="/assets/js/modal-redirect.js"></script>';
 	?>
-	
-</script>
-
-
+</form>
 <?php
 }
 ?> 

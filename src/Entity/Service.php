@@ -24,6 +24,14 @@ class Service {
      */
     private $etat_publication;
 
+    public function __construct(?string $image_name = '',?string $service_name = '', ?string $description_service = '', ?string $etat_publication = '')
+    {
+        $this->image_name = $image_name;
+        $this->service_name = $service_name;
+        $this->description_service = $description_service;
+        $this->etat_publication = $etat_publication;
+    }
+
 
     /**
      * @return string
@@ -98,10 +106,10 @@ class Service {
     {
         // On crée un tableau avec les 3 propriétés
         $tab = [
-            htmlentities($this->image_name),
-            htmlentities($this->$service_name),
-            htmlentities($this->description_service),
-            htmlentities($this->etat_publication)
+            htmlentities($this->image_name, ENT_QUOTES),
+            htmlentities($this->service_name, ENT_QUOTES),
+            htmlentities($this->description_service, ENT_QUOTES),
+            (int) htmlentities($this->etat_publication)
         ];
         // On crée une chaîne de caractères séparés de virgules et les quotes simples
         $str = implode("','", $tab);

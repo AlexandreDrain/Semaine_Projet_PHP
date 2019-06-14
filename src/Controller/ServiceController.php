@@ -18,7 +18,7 @@ class ServiceController
 		// Requête SQL
 		$query = "SELECT * FROM services WHERE etat_publication = 1";
 		// Exécution de la requête SQL et récupération des services
-		$services = $database->query($query, service::class);
+		$services = $database->query($query, Service::class);
 	
 		return compact('services');
 	}

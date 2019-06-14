@@ -18,19 +18,19 @@ class GaragistePageController
 				['service_name', 'text', 128],
 				['desc_service', 'text', 128],
 			]);
+            FormValidator::sanitizeRadio('etat_publication');
             // On vérifie s'il y a une erreur
 			$isError = false;
 			foreach ($errors as $error) {
 				if($error !== '') {
 					$isError = true;
 				}
-			}
-
+			}	
 			if (!$isError) {
                 // Il n'y a pas d'erreur, on passe à l'inscription
 				$database = new Database();
                 // On crée un utilisateur en local
-				$service = new Service($_POST['image_name'], $_POST['service_name'], $_POST['description_service'],$_POST['etat_publication']);
+				$service = new Service($_POST['image_name'], $_POST['service_name'], $_POST['desc_service'],$_POST['etat_publication']);
 				$query = "INSERT INTO services (image_name, service_name, description_service, etat_publication) VALUES (" .
 				$service->getStrParamsSQL() .
 				")";
@@ -44,11 +44,11 @@ class GaragistePageController
                     // Le code 23000 = email unique
 					if ($code === '23000') {
                         // On affiche un message d'erreur
-						$errorMessageEmail = 'Email déjà utilisé';
+						var_dump('Email déjà utilisé');
 					} else {
 						var_dump($e);
                         // Si on ne sait pas comment gérer, on provoque une exception
-						throw new \Exception('PDOException dans RegisterController');
+						throw new \Exception('PDOException dans GaragistePageController');
 					}
 				}
 			}
@@ -56,5 +56,5 @@ class GaragistePageController
 		return compact('errors', 'success', 'service', 'formValidator');
 
 	}
-	
+
 }

@@ -34,17 +34,18 @@ header div {
 	flex-direction: column;
 	border-left: 1px solid black;
 	border-bottom: 1px solid black;
-	color: white;
+	color: black;
 }
 header div a button {
 	background: transparent;
-	border: 1px solid white;
+	border: 1px solid black;
 	padding: 2px;
 	border-radius: 15px;
-	color: white;
+	color: black;
 	transition: .5s;
 }
 header div a button:hover {
+	color: white;
 	background: black;
 	padding: 4px;
 	box-shadow: black 5px 5px 10px;
@@ -148,4 +149,8 @@ main div form div:nth-child(6) label {
 		flex-direction: column;
 		align-items: center;
 	}
+	header div {
+		border: 1px solid black;
+	}
+
 }

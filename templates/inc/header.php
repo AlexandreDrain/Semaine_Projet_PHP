@@ -28,7 +28,7 @@ extract($datas);
 		<h1>MechaAvailability</h1>
 		<div>
 		<?php if (!empty($_SESSION['name'])) {
-			echo "<p>Utilisateur : " . $_SESSION['name'] . '</p>';
+			echo "<p>Utilisateur : <strong>" . $_SESSION['name'] . '</strong></p>';
 		} ?>
 		<a href="/Deconnexion"><button type="button">Déconnexion</button></a>
 		</div>
@@ -46,11 +46,12 @@ extract($datas);
 				<li class="nav-item">
 					<a class="nav-link" href="/services">Services</a>
 				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="/sign-in">Sign-in</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="/inscription">Inscription</a>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdwn" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Connection</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item" href="/inscription">Inscription</a>
+						<a class="dropdown-item" href="/sign-in">Sign-in</a>
+					</div>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="/Pages_des_garagistes">garagiste</a>
