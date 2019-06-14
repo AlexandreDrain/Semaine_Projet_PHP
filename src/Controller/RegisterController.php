@@ -43,7 +43,7 @@ class RegisterController
                 $database = new Database();
                 // $database->connect(); appelé directement dans le constructeur
                 // On crée un utilisateur en local
-                $role = ($_POST['role']) ? 'admin' : 'user';
+                $role = ($_POST['role']) ? 'garagiste' : 'client';
                 $user = new User($_POST['name'], $_POST['lastName'], $_POST['email'], $_POST['password'], $role);
                 $query = "INSERT INTO utilisateurs (name, last_name, email, password, role) VALUES (" .
                     $user->getStrParamsSQL() .

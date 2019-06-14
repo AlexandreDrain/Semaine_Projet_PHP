@@ -10,7 +10,7 @@ $router->addRoute('/inscription', 'register.php');
 $router->addRoute('/services', 'service.php');
 $router->addRoute('/sign-in', 'sign_in.php');
 $router->addRoute('/Deconnexion', 'deconnexion.php');
-
+$router->addRoute('/Pages_des_garagistes', 'garagistePage.php');
 
 $templates = $router->match();
 

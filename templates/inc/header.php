@@ -4,7 +4,9 @@ use src\Controller\AuthController;
 $tata = new AuthController();
 $datas = $tata->connect();
 extract($datas);
+
 ?>
+
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -49,6 +51,9 @@ extract($datas);
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="/inscription">Inscription</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/Pages_des_garagistes">garagiste</a>
 				</li>
 			</ul>
 		</div>

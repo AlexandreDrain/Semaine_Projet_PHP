@@ -47,6 +47,7 @@ class AuthController
 					if(password_verify($_POST['password'], $userPassword)) {
 
 						$_SESSION['name'] = $users[0]->getName();
+						$_SESSION['role'] = $users[0]->getRole();
 						$url = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'];
                         header('Location: '.$url.'/');
 					} else {
